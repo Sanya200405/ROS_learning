@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+   
+   <node pkg="my_first_ros_package" type="publisher.py" name="my_first_launch_code">
+   </node>
+   
+</launch>   

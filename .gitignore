@@ -1,6 +1,17 @@
+# Catkin workspace build outputs
 build/
 devel/
+install/
 logs/
-__pycache__/
+.catkin_workspace
+.catkin_tools/
+
+# Python compiled bytecode
 *.pyc
+__pycache__/
+
+# Editor temporary files
+*.swp
+*~
 .vscode/
+.idea/

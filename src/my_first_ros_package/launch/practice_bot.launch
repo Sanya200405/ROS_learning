@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+     
+   <arg name="model_package" default="my_first_ros_package"/>
+   <arg name="urdf_file" default="practice_bot.urdf"/>
+
+   <param name="robot_description" textfile="$(find my_first_ros_package)/robot_urdf/$(arg urdf_file)"/>
+
+   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher_1">
+
+   </node>
+
+   
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="false"/>
+        <arg name="debug" value="false"/>
+   </include>
+
+   <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" 
+         args="-urdf -model practice_bot -param robot_description -x 0.0 -y 0.0 -z 0.20" 
+         output="screen" respawn="false">
+   </node>
+
+   <node pkg="rviz" type="rviz" name="rviz_1"
+    args="-d $(find my_first_ros_package)/rviz/rviz_1.rviz">   
+   </node>
+    
+   <node pkg="tf" type="static_transform_publisher" name="static_transform_publisher_1"
+    args="0 0 0 0 0 0 map odom 20">
+   </node> 
+   
+    
+</launch>
